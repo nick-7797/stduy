@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6일차 파이썬 학습 앱: 똑똑한 파이썬 만들기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .code-editor {
+            font-family: 'monospace';
+            font-size: 1rem;
+            line-height: 1.5;
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 200px;
+            resize: vertical;
+        }
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'monospace';
+            white-space: pre-wrap;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        .concept-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .nav-btn-primary {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .nav-btn-primary:hover {
+            background-color: #4338ca;
+        }
+        .nav-btn-secondary {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+        .nav-btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-3xl w-full">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">🐍 6일차: 상황에 따라 다르게 행동하기</h1>
+            <p class="text-gray-600 mt-2">조건문을 사용해 프로그램이 스스로 판단하고 결정하게 만들어 봐요!</p>
+        </header>
+
+        <main>
+            <!-- 주요 개념 -->
+            <div class="card">
+                <h2 class="section-title">오늘의 주요 개념 💡</h2>
+                <p class="text-gray-700">
+                    "만약 비가 오면 우산을 챙기고, 그게 아니라면 그냥 나간다"처럼, 우리도 일상에서 조건에 따라 행동을 결정하죠. 파이썬에게도 이런 판단 능력을 줄 수 있어요.
+                </p>
+
+                <h3 class="concept-title">1. `if`, `elif`, `else`: 조건에 따른 선택지</h3>
+                <p class="text-gray-700">
+                    <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                        <li><code>if 조건:</code>: "<strong>만약</strong> 이 조건이 맞다면, 아래 코드를 실행해!" 라는 뜻이에요.</li>
+                        <li><code>elif 조건:</code>: "<strong>위의 조건이 틀리고, 만약</strong> 이 조건이 맞다면, 이걸 실행해!" (여러 개 사용 가능)</li>
+                        <li><code>else:</code>: "<strong>위의 조건들이 모두 틀리다면,</strong> 마지막으로 이걸 실행해!" (선택사항, 맨 마지막에 한 번만)</li>
+                    </ul>
+                </p>
+                 <p class="text-gray-700 mt-4 p-3 bg-yellow-100 border-l-4 border-yellow-500 rounded-md">
+                    <strong>🚨 문법 약속!</strong> 조건문 뒤에는 반드시 콜론(<code>:</code>)을 찍고, 다음 줄부터는 꼭 <strong>들여쓰기(indentation)</strong>를 해야 해요. 들여쓰기 된 코드 블록이 바로 해당 조건이 맞을 때 실행되는 영역이랍니다.
+                </p>
+
+                <h3 class="concept-title">2. 비교 연산자: 조건을 만드는 도구</h3>
+                <p class="text-gray-700">
+                    조건을 만들 때는 아래와 같은 비교 연산자를 사용해요.
+                    <ul class="list-disc list-inside mt-2 text-gray-700">
+                        <li><code>==</code> : 같다 (<code>=</code>는 변수에 값을 넣는 것이니 헷갈리면 안 돼요!)</li>
+                        <li><code>!=</code> : 다르다</li>
+                        <li><code>></code> : 크다</li>
+                        <li><code><</code> : 작다</li>
+                        <li><code>>=</code> : 크거나 같다</li>
+                        <li><code><=</code> : 작거나 같다</li>
+                    </ul>
+                </p>
+            </div>
+
+            <!-- 예제 코드 -->
+            <div class="card">
+                <h2 class="section-title">✍️ 예제 살펴보기</h2>
+                <p class="text-gray-700 mb-4">
+                    나이를 입력받아 놀이기구 탑승 가능 여부를 알려주는 프로그램이에요.
+                </p>
+                <div class="code-block">
+age_str = input("나이를 입력하세요: ")
+age = int(age_str)
+
+if age >= 10:
+    print("환영합니다! 놀이기구를 즐겨주세요.")
+else:
+    print("아쉽지만, 10살 이상부터 탑승 가능합니다.")
+    remaining_years = 10 - age
+    print(remaining_years, "년 뒤에 다시 만나요!")
+                </div>
+                <h3 class="concept-title">💬 예제 설명</h3>
+                <p class="text-gray-700">
+                    먼저 나이를 입력받아 숫자(<code>int</code>)로 바꿔줘요. 그리고 <code>if age >= 10:</code> 이라는 조건으로 "나이가 10보다 크거나 같은가?"를 확인하죠. 이 조건이 맞으면(True) 첫 번째 `print` 문이 실행되고, 조건이 틀리면(False) <code>else:</code> 아래의 두 `print` 문이 실행됩니다. 프로그램이 상황에 맞게 다른 메시지를 보여주죠!
+                </p>
+            </div>
+
+            <!-- 연습 문제 -->
+            <div class="card">
+                <h2 class="section-title">🧩 직접 해보기: 연습 문제</h2>
+                <p class="text-gray-700 mb-4">
+                    사용자에게 숫자를 하나 입력받아, 그 숫자가 <strong>양수</strong>인지, <strong>음수</strong>인지, 아니면 <strong>0</strong>인지를 판별하는 프로그램을 만들어 보세요.
+                </p>
+                <p class="text-gray-600 mb-4 bg-yellow-100 p-3 rounded-md">
+                    <strong>목표:</strong>
+                    1. 사용자에게 숫자를 입력받아 정수로 변환하세요.
+                    2. <code>if</code>, <code>elif</code>, <code>else</code>를 모두 사용하여 세 가지 경우(양수, 음수, 0)를 확인하고, 각각에 맞는 메시지를 출력하세요.
+                </p>
+                <textarea id="code-editor" class="code-editor w-full" placeholder="# 이곳에 파이썬 코드를 입력하세요."></textarea>
+                <button id="check-answer-btn" class="mt-4 w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    정답 확인
+                </button>
+                <div id="result-area" class="mt-4 p-4 rounded-lg hidden"></div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="flex justify-between">
+                <a href="day5.html" class="nav-btn nav-btn-secondary">&larr; 이전 학습 (5일차)</a>
+                <a href="day7.html" class="nav-btn nav-btn-primary">다음 학습 (7일차) &rarr;</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const checkAnswerBtn = document.getElementById('check-answer-btn');
+        const codeEditor = document.getElementById('code-editor');
+        const resultArea = document.getElementById('result-area');
+
+        checkAnswerBtn.addEventListener('click', () => {
+            const userAnswer = codeEditor.value;
+
+            // 정답 확인 로직
+            const hasIf = userAnswer.includes('if');
+            const hasElif = userAnswer.includes('elif');
+            const hasElse = userAnswer.includes('else');
+            const hasInput = userAnswer.includes('input(');
+            const hasInt = userAnswer.includes('int(');
+
+            resultArea.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+
+            if (hasIf && hasElif && hasElse && hasInput && hasInt) {
+                resultArea.classList.add('bg-green-100', 'text-green-800');
+                resultArea.innerHTML = `
+                    <h4 class="font-bold">정답입니다! 🎉</h4>
+                    <p><code>if</code>, <code>elif</code>, <code>else</code>를 모두 사용해서 모든 경우의 수를 완벽하게 처리하셨네요! 이제 프로그램에 논리를 부여할 수 있게 되었습니다.</p>
+                    <p class="mt-2 font-bold">모범 답안:</p>
+                    <div class="code-block text-sm mt-1 !bg-green-200 !text-green-900">
+num_str = input("숫자를 입력하세요: ")
+num = int(num_str)
+
+if num > 0:
+    print("입력한 숫자는 양수입니다.")
+elif num < 0:
+    print("입력한 숫자는 음수입니다.")
+else:
+    print("입력한 숫자는 0입니다.")
+                    </div>
+                `;
+            } else {
+                resultArea.classList.add('bg-red-100', 'text-red-800');
+                resultArea.innerHTML = `
+                    <h4 class="font-bold">아쉽지만, 다시 시도해 보세요. 🤔</h4>
+                    <p>세 가지 경우를 모두 확인하려면 <code>if</code>, <code>elif</code>, <code>else</code>를 함께 사용해야 해요. 각 조건이 맞는지 다시 한번 살펴보세요!</p>
+                     <p class="mt-2 font-bold">모범 답안:</p>
+                    <div class="code-block text-sm mt-1 !bg-red-200 !text-red-900">
+num_str = input("숫자를 입력하세요: ")
+num = int(num_str)
+
+if num > 0:
+    print("입력한 숫자는 양수입니다.")
+elif num < 0:
+    print("입력한 숫자는 음수입니다.")
+else:
+    print("입력한 숫자는 0입니다.")
+                    </div>
+                `;
+            }
+
+            resultArea.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
