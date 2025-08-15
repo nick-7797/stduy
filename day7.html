@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7일차 파이썬 학습 앱: 미니 프로젝트 ① 간단한 퀴즈 게임</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .code-editor {
+            font-family: 'monospace';
+            font-size: 1rem;
+            line-height: 1.5;
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 250px;
+            resize: vertical;
+        }
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'monospace';
+            white-space: pre-wrap;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        .concept-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .nav-btn-primary {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .nav-btn-primary:hover {
+            background-color: #4338ca;
+        }
+        .nav-btn-secondary {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+        .nav-btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-3xl w-full">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">🐍 7일차: 미니 프로젝트 ①</h1>
+            <p class="text-gray-600 mt-2">배운 것을 총동원하여 나만의 퀴즈 게임을 만들어봐요!</p>
+        </header>
+
+        <main>
+            <!-- 프로젝트 소개 -->
+            <div class="card">
+                <h2 class="section-title">🎉 첫 번째 프로젝트에 오신 것을 환영합니다!</h2>
+                <p class="text-gray-700">
+                    지난 1주차 동안 정말 많은 것을 배웠어요. 이제 그 지식들을 하나로 엮어 실제 작동하는 프로그램을 만들어 볼 시간입니다. 이번 프로젝트를 통해 배운 내용이 어떻게 어우러져 멋진 결과물을 만드는지 직접 경험하게 될 거예요.
+                </p>
+                <p class="text-gray-700 mt-4"><strong>이번 프로젝트에서 사용할 개념들:</strong></p>
+                <ul class="list-disc list-inside mt-2 text-gray-700">
+                    <li><code>print()</code>: 문제와 결과 메시지 출력</li>
+                    <li><code>input()</code>: 사용자의 정답 입력받기</li>
+                    <li>변수: 정답, 사용자 답안, 점수 등 저장</li>
+                    <li><code>.strip()</code>, <code>.lower()</code>: 사용자 답안을 깔끔하게 만들기</li>
+                    <li><code>if/else</code>: 정답과 오답을 판별하기</li>
+                </ul>
+            </div>
+
+            <!-- 연습 문제 -->
+            <div class="card">
+                <h2 class="section-title">🧩 오늘의 도전 과제: 수도 맞추기 퀴즈 게임!</h2>
+                <p class="text-gray-700 mb-4">
+                    사용자에게 특정 나라의 수도를 물어보고, 정답을 맞혔는지 알려주는 간단한 퀴즈 게임을 만들어 보겠습니다.
+                </p>
+                <p class="text-gray-600 mb-4 bg-yellow-100 p-3 rounded-md">
+                    <strong>프로그램 실행 순서:</strong>
+                    1. "수도 맞추기 퀴즈에 오신 것을 환영합니다!" 라는 환영 메시지를 출력하세요.
+                    2. "대한민국의 수도는 어디일까요?" 라고 질문하세요.
+                    3. 사용자에게 답을 입력받아 변수에 저장하세요.
+                    4. 사용자가 "서울"이라고 답하면 "정답입니다!"를, 다른 답을 입력하면 "틀렸습니다! 정답은 서울입니다."를 출력하세요.
+                    <br><br>
+                    <strong>✨ 보너스 도전:</strong>
+                    - 사용자가 " 서울 "처럼 공백을 넣거나 "서울" 대신 "seoul"이라고 영어로 입력해도 정답으로 처리해 보세요! (<code>.strip()</code>, <code>.lower()</code> 활용)
+                </p>
+                <textarea id="code-editor" class="code-editor w-full" placeholder="# 이곳에 퀴즈 게임 코드를 작성해 보세요."></textarea>
+                <button id="check-answer-btn" class="mt-4 w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    정답 확인
+                </button>
+                <div id="result-area" class="mt-4 p-4 rounded-lg hidden"></div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="flex justify-between">
+                <a href="day6.html" class="nav-btn nav-btn-secondary">&larr; 이전 학습 (6일차)</a>
+                <a href="day8.html" class="nav-btn nav-btn-primary">다음 학습 (8일차) &rarr;</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const checkAnswerBtn = document.getElementById('check-answer-btn');
+        const codeEditor = document.getElementById('code-editor');
+        const resultArea = document.getElementById('result-area');
+
+        checkAnswerBtn.addEventListener('click', () => {
+            const userAnswer = codeEditor.value;
+
+            // 정답 확인 로직: 프로젝트의 핵심 요소들이 포함되었는지 확인
+            const hasPrint = userAnswer.includes('print(');
+            const hasInput = userAnswer.includes('input(');
+            const hasIf = userAnswer.includes('if');
+            const hasElse = userAnswer.includes('else');
+            const hasComparison = userAnswer.includes('==');
+
+            resultArea.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+
+            if (hasPrint && hasInput && hasIf && hasElse && hasComparison) {
+                resultArea.classList.add('bg-green-100', 'text-green-800');
+                resultArea.innerHTML = `
+                    <h4 class="font-bold">프로젝트 완성! 훌륭합니다! 🎉</h4>
+                    <p>지난 1주일간 배운 내용을 모두 활용하여 멋진 프로그램을 만드셨네요! 이제 자신감을 가지고 다음 주차 학습으로 나아가도 좋습니다.</p>
+                    <p class="mt-2 font-bold">모범 답안 (보너스 도전 포함):</p>
+                    <div class="code-block text-sm mt-1 !bg-green-200 !text-green-900">
+# 1. 환영 메시지
+print("수도 맞추기 퀴즈에 오신 것을 환영합니다!")
+
+# 2. 문제 내기
+question = "대한민국의 수도는 어디일까요? "
+
+# 3. 사용자에게 답 입력받기
+user_answer = input(question)
+
+# 4. 정답 판별하기 (공백 제거, 소문자 변환)
+clean_answer = user_answer.strip().lower()
+
+if clean_answer == "서울" or clean_answer == "seoul":
+    print("정답입니다!")
+else:
+    print("틀렸습니다! 정답은 서울입니다.")
+                    </div>
+                `;
+            } else {
+                resultArea.classList.add('bg-red-100', 'text-red-800');
+                resultArea.innerHTML = `
+                    <h4 class="font-bold">조금만 더 힘내세요! 🤔</h4>
+                    <p>프로젝트의 핵심 요소가 빠진 것 같아요. <code>print</code>, <code>input</code>, <code>if/else</code>, 그리고 정답 비교(<code>==</code>)를 모두 사용했는지 다시 확인해 보세요!</p>
+                     <p class="mt-2 font-bold">모범 답안 (기본):</p>
+                    <div class="code-block text-sm mt-1 !bg-red-200 !text-red-900">
+# 1. 환영 메시지
+print("수도 맞추기 퀴즈에 오신 것을 환영합니다!")
+
+# 2. 문제 내고 답 받기
+user_answer = input("대한민국의 수도는 어디일까요? ")
+
+# 3. 정답 판별하기
+if user_answer == "서울":
+    print("정답입니다!")
+else:
+    print("틀렸습니다! 정답은 서울입니다.")
+                    </div>
+                `;
+            }
+
+            resultArea.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
