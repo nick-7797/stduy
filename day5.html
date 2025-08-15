@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5일차 파이썬 학습 앱: 문자열 다듬고 변신시키기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .code-editor {
+            font-family: 'monospace';
+            font-size: 1rem;
+            line-height: 1.5;
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 200px;
+            resize: vertical;
+        }
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'monospace';
+            white-space: pre-wrap;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        .concept-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .nav-btn-primary {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .nav-btn-primary:hover {
+            background-color: #4338ca;
+        }
+        .nav-btn-secondary {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+        .nav-btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-3xl w-full">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">🐍 5일차: 유용한 문자열 기능들</h1>
+            <p class="text-gray-600 mt-2">대소문자를 바꾸고, 불필요한 공백을 없애고, 특정 기준으로 문자열을 나누는 법을 배워요.</p>
+        </header>
+
+        <main>
+            <!-- 주요 개념 -->
+            <div class="card">
+                <h2 class="section-title">오늘의 주요 개념 💡</h2>
+                <p class="text-gray-700">
+                    문자열 뒤에 점(<code>.</code>)을 찍고 사용하는 특별한 명령어들이 있어요. 이걸 '메서드(method)'라고 부르는데, 문자열을 더 멋지게 가공하는 도구들이라고 생각하면 쉬워요.
+                </p>
+
+                <h3 class="concept-title">1. 대소문자 변환: `upper()` & `lower()`</h3>
+                <p class="text-gray-700">
+                    <ul class="list-disc list-inside mt-2 text-gray-700">
+                        <li><code>변수명.upper()</code>: 모든 글자를 <strong>대문자</strong>로 바꿔줘요.</li>
+                        <li><code>변수명.lower()</code>: 모든 글자를 <strong>소문자</strong>로 바꿔줘요.</li>
+                    </ul>
+                </p>
+
+                <h3 class="concept-title">2. 공백 제거: `strip()`</h3>
+                <p class="text-gray-700">
+                    사용자가 실수로 입력한 문자열 앞뒤의 불필요한 공백을 깔끔하게 제거해줘요.
+                    <ul class="list-disc list-inside mt-2 text-gray-700">
+                        <li><code>변수명.strip()</code>: 양쪽 공백 제거</li>
+                        <li><code>변수명.lstrip()</code>: 왼쪽 공백 제거</li>
+                        <li><code>변수명.rstrip()</code>: 오른쪽 공백 제거</li>
+                    </ul>
+                </p>
+
+                <h3 class="concept-title">3. 문자열 나누기: `split()`</h3>
+                <p class="text-gray-700">
+                    특정한 기준(구분자)으로 문자열을 조각내서, 조각들의 묶음(리스트)으로 만들어줘요.
+                    <ul class="list-disc list-inside mt-2 text-gray-700">
+                        <li><code>변수명.split(',')</code>: 쉼표(,)를 기준으로 문자열을 나눠요.</li>
+                        <li><code>변수명.split()</code>: 괄호 안을 비워두면 공백(띄어쓰기, 탭, 엔터)을 기준으로 나눠요.</li>
+                    </ul>
+                </p>
+            </div>
+
+            <!-- 예제 코드 -->
+            <div class="card">
+                <h2 class="section-title">✍️ 예제 살펴보기</h2>
+                <p class="text-gray-700 mb-4">
+                    정리되지 않은 문장을 깔끔하게 다듬고, 단어별로 나눠보는 예제예요.
+                </p>
+                <div class="code-block">
+messy_sentence = "  welcome to the Real world, python!   "
+
+# 1. 양쪽 공백 제거하기
+clean_sentence = messy_sentence.strip()
+print("공백 제거:", clean_sentence)
+
+# 2. 모두 대문자로 바꾸기
+upper_sentence = clean_sentence.upper()
+print("대문자:", upper_sentence)
+
+# 3. 'world'를 'Jungle'로 바꾸기 (replace)
+replaced_sentence = clean_sentence.replace("world", "Jungle")
+print("단어 교체:", replaced_sentence)
+
+# 4. 공백 기준으로 단어 나누기
+words = clean_sentence.split()
+print("단어 나누기:", words)
+                </div>
+                <h3 class="concept-title">💬 예제 설명</h3>
+                <p class="text-gray-700">
+                    <code>messy_sentence.strip()</code>을 통해 양쪽의 너저분한 공백이 사라졌어요. 그 다음 <code>.upper()</code>를 사용해 모든 글자를 대문자로 바꿨죠. <code>.replace()</code>는 특정 단어를 다른 단어로 교체하는 유용한 기능이에요. 마지막으로 <code>.split()</code>을 사용하니, 문장이 단어 단위로 쪼개져서 <code>['welcome', 'to', 'the', 'Real', 'world,', 'python!']</code> 와 같은 '리스트' 형태로 바뀐 것을 볼 수 있어요. (리스트는 2주차에 더 자세히 배워요!)
+                </p>
+            </div>
+
+            <!-- 연습 문제 -->
+            <div class="card">
+                <h2 class="section-title">🧩 직접 해보기: 연습 문제</h2>
+                <p class="text-gray-700 mb-4">
+                    사용자가 쉼표로 구분된 과일 목록을 지저분하게 입력했다고 상상해 보세요. 이 입력을 받아서 깔끔하게 정리하고, 각 과일의 이름을 분리하는 코드를 작성해 보세요.
+                </p>
+                <p class="text-gray-600 mb-4 bg-yellow-100 p-3 rounded-md">
+                    <strong>목표:</strong>
+                    1. <code>user_input</code> 변수의 양쪽 공백을 제거하세요.
+                    2. 모든 과일 이름을 소문자로 통일하세요.
+                    3. 쉼표(<code>,</code>)를 기준으로 문자열을 나눠서 <code>fruit_list</code> 변수에 저장하세요.
+                    4. 최종 결과를 출력하세요.
+                </p>
+                <textarea id="code-editor" class="code-editor w-full" placeholder="# 이곳에 파이썬 코드를 입력하세요.&#10;user_input = &quot;   Apple, bAnAnA,   Orange, kiWI   &quot;"></textarea>
+                <button id="check-answer-btn" class="mt-4 w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                    정답 확인
+                </button>
+                <div id="result-area" class="mt-4 p-4 rounded-lg hidden"></div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="flex justify-between">
+                <a href="day4.html" class="nav-btn nav-btn-secondary">&larr; 이전 학습 (4일차)</a>
+                <a href="day6.html" class="nav-btn nav-btn-primary">다음 학습 (6일차) &rarr;</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const checkAnswerBtn = document.getElementById('check-answer-btn');
+        const codeEditor = document.getElementById('code-editor');
+        const resultArea = document.getElementById('result-area');
+
+        checkAnswerBtn.addEventListener('click', () => {
+            const userAnswer = codeEditor.value;
+
+            // 정답 확인 로직
+            const hasStrip = userAnswer.includes('.strip()');
+            const hasLower = userAnswer.includes('.lower()');
+            const hasSplit = userAnswer.includes('.split(');
+            const hasPrint = userAnswer.includes('print(');
+
+            resultArea.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+
+            if (hasStrip && hasLower && hasSplit && hasPrint) {
+                resultArea.classList.add('bg-green-100', 'text-green-800');
+                resultArea.innerHTML = `
+                    <h4 class="font-bold">정답입니다! 🎉</h4>
+                    <p>문자열 메서드를 연달아 사용하는 '메서드 체이닝'까지 완벽하게 이해하셨네요! 정말 훌륭합니다.</p>
+                    <p class="mt-2 font-bold">모범 답안:</p>
+                    <div class="code-block text-sm mt-1 !bg-green-200 !text-green-900">
+user_input = "   Apple, bAnAnA,   Orange, kiWI   "
+
+# 1. 공백 제거 -> 2. 소문자 변환 -> 3. 쉼표로 나누기
+# 이렇게 메서드를 연결해서 쓸 수 있어요! (메서드 체이닝)
+clean_input = user_input.strip().lower()
+fruit_list = clean_input.split(',')
+
+print("정리된 과일 목록:", fruit_list)
+# 출력 결과: ['   apple', ' banana', '   orange', ' kiwi   ']
+# 이런! 과일 이름 사이의 공백은 아직 남아있네요.
+# 이 문제는 나중에 반복문을 배우면 해결할 수 있답니다!
+                    </div>
+                `;
+            } else {
+                resultArea.classList.add('bg-red-100', 'text-red-800');
+                resultArea.innerHTML = `
+                    <h4 class="font-bold">아쉽지만, 다시 시도해 보세요. 🤔</h4>
+                    <p><code>.strip()</code>으로 양쪽 공백을, <code>.lower()</code>로 소문자 변환을, 그리고 <code>.split(',')</code>으로 문자열을 나누는 것을 모두 사용했는지 확인해 보세요!</p>
+                     <p class="mt-2 font-bold">모범 답안:</p>
+                    <div class="code-block text-sm mt-1 !bg-red-200 !text-red-900">
+user_input = "   Apple, bAnAnA,   Orange, kiWI   "
+
+# 1. 공백 제거 -> 2. 소문자 변환
+clean_input = user_input.strip().lower()
+
+# 3. 쉼표로 나누기
+fruit_list = clean_input.split(',')
+
+print("정리된 과일 목록:", fruit_list)
+                    </div>
+                `;
+            }
+
+            resultArea.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
