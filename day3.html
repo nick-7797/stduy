@@ -53,10 +53,13 @@
             margin-bottom: 0.5rem;
         }
         .nav-btn {
+            display: inline-block;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             font-weight: 700;
             transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
         }
         .nav-btn-primary {
             background-color: #4f46e5;
@@ -71,11 +74,6 @@
         }
         .nav-btn-secondary:hover {
             background-color: #d1d5db;
-        }
-        .nav-btn-disabled {
-            background-color: #d1d5db;
-            color: #9ca3af;
-            cursor: not-allowed;
         }
     </style>
 </head>
@@ -152,8 +150,8 @@ print("그리고 저에게는", remaining_candies, "개가 남아요!")
 
             <!-- Navigation -->
             <div class="flex justify-between">
-                <button id="prev-day-btn" class="nav-btn nav-btn-secondary">이전 학습 (2일차)</button>
-                <button id="next-day-btn" class="nav-btn nav-btn-disabled">다음 학습 (4일차)</button>
+                <a href="day2.html" class="nav-btn nav-btn-secondary">&larr; 이전 학습 (2일차)</a>
+                <a href="day4.html" class="nav-btn nav-btn-primary">다음 학습 (4일차) &rarr;</a>
             </div>
         </main>
     </div>
@@ -224,24 +222,6 @@ print("잔돈은", change, "원 남습니다.")
 
             resultArea.classList.remove('hidden');
         });
-        
-        // --- Navigation Logic ---
-        // 실제 여러 페이지를 만드는 대신, 버튼 클릭 시 알림으로 대체합니다.
-        // 이 환경에서는 파일 이동이 불가능하기 때문입니다.
-        document.getElementById('prev-day-btn').addEventListener('click', () => {
-            alert("2일차 학습으로 이동합니다! (데모)");
-            // 실제 웹사이트라면 window.location.href = 'day2.html'; 와 같이 사용합니다.
-        });
-
-        document.getElementById('next-day-btn').addEventListener('click', (e) => {
-            // 'disabled' 클래스가 있으면 아무것도 하지 않음
-            if(e.target.classList.contains('nav-btn-disabled')) {
-                alert("4일차 학습은 아직 준비 중입니다. 조금만 기다려주세요!");
-            } else {
-                 alert("4일차 학습으로 이동합니다! (데모)");
-            }
-        });
-
     </script>
 </body>
 </html>
